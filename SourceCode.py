@@ -1,2 +1,2 @@
-def LSC():
+def LCS():
 	
