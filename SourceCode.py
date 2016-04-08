@@ -21,3 +21,10 @@ while i < len(stringList):
 	(length, string) = LCS(string1, string2)
 	printList.append((length, string))
 
+# Code to output answer
+
+j = 0
+for output in printList:
+	outputTuple = printList[j]
+	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1]
+	j += 1
