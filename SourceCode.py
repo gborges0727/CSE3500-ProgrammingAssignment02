@@ -1,7 +1,41 @@
 # LCS Algorithm
 
 def LCS(string1, string2):
-	return (1, "hello")
+	str1Len = len(string1)
+	str2Len = len(string2)
+
+	lcsMatrix = [[0] * (str2Len + 1) for _ in range(str1Len + 1)] # LCS 2DArray
+
+	#Running LCS to fill in the 2D array
+
+	for i in range(str1Len + 1):
+		for j in range(str2Len + 1):
+			if i or j == 0:
+				lcsMatrix[i][j] = 0
+			elif string1[i - 1] == string2[j - 1]:
+				lcsMatrix[i][j] = lcsMatrix[i - 1][j - 1] + 1
+			else:
+				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j-1])
+
+	if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
+		return (0, "")
+
+	# Running TraceBack to determine actual LCS String
+
+	lcsString = ''
+	k = str1Len + 1
+	l = str2Len + 1
+	while k or l > 0:
+		if string1[k - 1] == string2[k - 2]:
+			lcsString += string[k - 1]        # Doesn't matter if l or k is used
+			k -= 1
+			j -= 1
+		elif lcsMatrix[k - 1][l] > lcsMatrix[k][l - 1]:
+			k -= 1
+		else:
+			l -= 1
+
+	return (lcsMatrix[str1Len + 1][str2Len + 1], lcsString)
 
 # Code to read the file
 
@@ -26,6 +60,8 @@ while i < len(stringList):
 j = 0
 for output in printList:
 	outputTuple = printList[j]
+	if outputTuple[0] == 0:
+		print("There is no LCS of", stringList[j], "and", stringList[j + 1])
 	print("The length & LCS of", stringList[j], "and", stringList[j + 1], 
 		"is Length =", outputTuple[0], "and the LCS is", outputTuple[1])
 	j += 1
