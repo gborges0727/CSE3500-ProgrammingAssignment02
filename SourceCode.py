@@ -3,14 +3,14 @@
 def LCS(string1, string2):
 	return (1, "hello")
 
-# Code to read the files
+# Code to read the file
 
 file = open('CollectionSeqs/listSeqs-errorlow-l50.txt')
 stringList = list()
 for line in file:
 	stringList.append(line)
 
-#Code to run through LCS Algorithm and produce an output
+#Code to run the LCS Algorithm and produce an output
 
 i = 0
 printList = list()
@@ -26,5 +26,6 @@ while i < len(stringList):
 j = 0
 for output in printList:
 	outputTuple = printList[j]
-	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1]
+	print("The length & LCS of", stringList[j], "and", stringList[j + 1], 
+		"is Length =", outputTuple[0], "and the LCS is", outputTuple[1])
 	j += 1
