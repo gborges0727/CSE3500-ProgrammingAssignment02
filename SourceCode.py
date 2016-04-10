@@ -15,9 +15,6 @@ def LCS(string1, string2):
 			else:
 				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j - 1])
 
-	#if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
-	#	return (0, "")
-
 	# Running TraceBack to determine actual LCS String
 
 	lcsString = ''
@@ -33,12 +30,12 @@ def LCS(string1, string2):
 		else:
 			l -= 1
 	lcsString = lcsString[::-1]   # The lscString is the lcs, but it does it backwards. This line reverses it
-	
+
 	return (lcsMatrix[str1Len][str2Len], lcsString)
 
 # Code to read the file
 
-file = open('CollectionSeqs/listSeqs-errorlow-l50.txt')
+file = open('CollectionSeqs/listSeqs-errorhigh-l50.txt')
 stringList = list()
 for line in file:
 	stringList.append(line)
