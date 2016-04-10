@@ -17,17 +17,17 @@ def LCS(string1, string2):
 			else:
 				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j-1])
 
-	if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
-		return (0, "")
+	#if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
+	#	return (0, "")
 
 	# Running TraceBack to determine actual LCS String
 
 	lcsString = ''
-	k = str1Len + 1
-	l = str2Len + 1
-	while k or l > 0:
-		if string1[k - 1] == string2[k - 2]:
-			lcsString += string[k - 1]        # Doesn't matter if l or k is used
+	k = str1Len
+	l = str2Len
+	while k and l > 0:
+		if string1[k - 1] == string2[l - 1]:
+			lcsString += string1[k - 1]        # Doesn't matter if l or k is used
 			k -= 1
 			j -= 1
 		elif lcsMatrix[k - 1][l] > lcsMatrix[k][l - 1]:
@@ -35,7 +35,7 @@ def LCS(string1, string2):
 		else:
 			l -= 1
 
-	return (lcsMatrix[str1Len + 1][str2Len + 1], lcsString)
+	return (lcsMatrix[str1Len][str2Len], lcsString)
 
 # Code to read the file
 
@@ -61,7 +61,6 @@ j = 0
 for output in printList:
 	outputTuple = printList[j]
 	if outputTuple[0] == 0:
-		print("There is no LCS of", stringList[j], "and", stringList[j + 1])
-	print("The length & LCS of", stringList[j], "and", stringList[j + 1], 
-		"is Length =", outputTuple[0], "and the LCS is", outputTuple[1])
+		print "There is no LCS of", stringList[j], "and", stringList[j + 1] 
+	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1] 
 	j += 1
