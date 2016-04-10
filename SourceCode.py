@@ -4,26 +4,16 @@ def LCS(string1, string2):
 	str1Len = len(string1)
 	str2Len = len(string2)
 
-	print string1
-	print string2
-
 	lcsMatrix = [[0] * (str2Len + 1) for _ in range(str1Len + 1)] # LCS 2DArray
 
 	#Running LCS to fill in the 2D array
 
-	for i in range(0, str1Len + 1):
-		for j in range(0, str2Len + 1):
-			print "str1: ", string1[i-1]
-			print "str2: ", string2[j-1], '\n'
-			if i or j == 0:
-				lcsMatrix[i][j] = 0
-			elif string1[i - 1] == string2[j - 1]:
+	for i in range(1, str1Len + 1):
+		for j in range(1, str2Len + 1):
+			if string1[i - 1] == string2[j - 1]:
 				lcsMatrix[i][j] = lcsMatrix[i - 1][j - 1] + 1
-				print "chars equal!"
 			else:
 				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j - 1])
-
-	# print lcsMatrix
 
 	#if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
 	#	return (0, "")
@@ -37,12 +27,13 @@ def LCS(string1, string2):
 		if string1[k - 1] == string2[l - 1]:
 			lcsString += string1[k - 1]        # Doesn't matter if l or k is used
 			k -= 1
-			j -= 1
+			l -= 1
 		elif lcsMatrix[k - 1][l] > lcsMatrix[k][l - 1]:
 			k -= 1
 		else:
 			l -= 1
-
+	lcsString = lcsString[::-1]   # The lscString is the lcs, but it does it backwards. This line reverses it
+	
 	return (lcsMatrix[str1Len][str2Len], lcsString)
 
 # Code to read the file
