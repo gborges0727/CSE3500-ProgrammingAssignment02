@@ -4,18 +4,26 @@ def LCS(string1, string2):
 	str1Len = len(string1)
 	str2Len = len(string2)
 
+	print string1
+	print string2
+
 	lcsMatrix = [[0] * (str2Len + 1) for _ in range(str1Len + 1)] # LCS 2DArray
 
 	#Running LCS to fill in the 2D array
 
-	for i in range(str1Len + 1):
-		for j in range(str2Len + 1):
+	for i in range(0, str1Len + 1):
+		for j in range(0, str2Len + 1):
+			print "str1: ", string1[i-1]
+			print "str2: ", string2[j-1], '\n'
 			if i or j == 0:
 				lcsMatrix[i][j] = 0
 			elif string1[i - 1] == string2[j - 1]:
 				lcsMatrix[i][j] = lcsMatrix[i - 1][j - 1] + 1
+				print "chars equal!"
 			else:
-				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j-1])
+				lcsMatrix[i][j] = max(lcsMatrix[i - 1][j], lcsMatrix[i][j - 1])
+
+	# print lcsMatrix
 
 	#if lcsMatrix[str1Len][str2Len] == 0: # Returns a tuple with a 0 if no LCS: Checked in output below
 	#	return (0, "")
@@ -62,5 +70,5 @@ for output in printList:
 	outputTuple = printList[j]
 	if outputTuple[0] == 0:
 		print "There is no LCS of", stringList[j], "and", stringList[j + 1] 
-	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1] 
+	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1], '\n'
 	j += 1
