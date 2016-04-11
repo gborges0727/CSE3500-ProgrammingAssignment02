@@ -31,11 +31,11 @@ def LCS(string1, string2):
 			l -= 1
 	lcsString = lcsString[::-1]   # The lscString is the lcs, but it does it backwards. This line reverses it
 
-	return (lcsMatrix[str1Len][str2Len], lcsString)
+	return (lcsMatrix[str1Len][str2Len] - 1, lcsString)
 
 # Code to read the file
 
-file = open('CollectionSeqs/listSeqs-errorhigh-l50.txt')
+file = open('CollectionSeqs/listSeqs-errorlow-l50.txt')
 stringList = list()
 for line in file:
 	stringList.append(line)
