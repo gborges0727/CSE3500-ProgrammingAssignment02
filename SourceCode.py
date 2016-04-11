@@ -1,4 +1,4 @@
-import timeit
+import timeit    # Used to calculate runtime below
 
 # LCS Algorithm
 
@@ -60,4 +60,4 @@ for firstString in stringList:
 		j = j + 1
 	i = i + 1
 endTime = timeit.default_timer()
-print "Runtime:", endTime - startTime
+print "Runtime:", endTime - startTime, "seconds"
