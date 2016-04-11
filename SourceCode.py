@@ -29,34 +29,47 @@ def LCS(string1, string2):
 			k -= 1
 		else:
 			l -= 1
-	lcsString = lcsString[::-1]   # The lscString is the lcs, but it does it backwards. This line reverses it
+	lcsString = lcsString[::-1]           # The lscString is the lcs, but it does it backwards. This line reverses it
 
-	return (lcsMatrix[str1Len][str2Len] - 1, lcsString) # -1 in return is needed to fix off by 1 error
+	return (lcsMatrix[str1Len][str2Len] - 1, lcsString)      # -1 in return is needed to fix off by 1 error
 
 # Code to read the file
 
-file = open('CollectionSeqs/listSeqs-errorhigh-l1000.txt')
+file = open('CollectionSeqs/listSeqs-errorlow-l50.txt')
 stringList = list()
 for line in file:
 	stringList.append(line)
 
 #Code to run the LCS Algorithm and produce an output
 
-i = 0
+i = 1
 printList = list()
-while i < len(stringList):
-	string1 = stringList[i]
-	string2 = stringList[i+1]
-	i += 2
-	(length, string) = LCS(string1, string2)
-	printList.append((length, string))
+for firstString in stringList:
+	j = 1
+	for secondString in stringList:
+		if firstString == secondString:
+			pass
+		elif i > j:
+			pass
+		else:
+			outputInfo = LCS(firstString, secondString)
+			if outputInfo[0] != 0:
+				print "The LCS of strings", i, "and", j, "has a length of", outputInfo[0], "and the string:", outputInfo[1]
+		j = j + 1
+	i = i + 1
+#while i < len(stringList):
+#	string1 = stringList[i]
+#	string2 = stringList[i+1]
+#	i += 2
+#	(length, string) = LCS(string1, string2)
+#	printList.append((length, string))
 
 # Code to output answer
 
-j = 0
-for output in printList:
-	outputTuple = printList[j]
-	if outputTuple[0] == 0:
-		print "There is no LCS of", stringList[j], "and", stringList[j + 1] 
-	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1], '\n'
-	j += 1
+#j = 0
+#for output in printList:
+#	outputTuple = printList[j]
+#	if outputTuple[0] == 0:
+#		print "There is no LCS of", stringList[j], "and", stringList[j + 1] 
+#	print "The length & LCS of", stringList[j], "and", stringList[j + 1], "is Length =", outputTuple[0], "and the LCS is", outputTuple[1], '\n'
+#	j += 1
