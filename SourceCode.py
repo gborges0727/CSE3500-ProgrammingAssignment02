@@ -1,3 +1,5 @@
+import timeit
+
 # LCS Algorithm
 
 def LCS(string1, string2):
@@ -43,7 +45,7 @@ for line in file:
 #Code to run the LCS Algorithm and produce an output
 
 i = 1
-printList = list()
+startTime = timeit.default_timer()
 for firstString in stringList:
 	j = 1
 	for secondString in stringList:
@@ -57,3 +59,5 @@ for firstString in stringList:
 				print "The LCS of strings", i, "and", j, "has a length of", outputInfo[0], "and the string:", outputInfo[1]
 		j = j + 1
 	i = i + 1
+endTime = timeit.default_timer()
+print "Runtime:", endTime - startTime
