@@ -37,7 +37,7 @@ def LCS(string1, string2):
 
 # Code to read the file
 
-file = open('CollectionSeqs/listSeqs-errorlow-l50.txt')
+file = open('CollectionSeqs/listSeqs-errorhigh-l10.txt')
 stringList = list()
 for line in file:
 	stringList.append(line)
@@ -56,7 +56,14 @@ for firstString in stringList:
 		else:
 			outputInfo = LCS(firstString, secondString)
 			if outputInfo[0] != 0:
+				k = len(firstString)
+				l = len(secondString)
+				average = (k + l) / 2.0
+				normLCS = outputInfo[0] / average
 				print "The LCS of strings", i, "and", j, "has a length of", outputInfo[0], "and the string:", outputInfo[1]
+				#print normLCS
+			else: 
+				print "No LCS"
 		j = j + 1
 	i = i + 1
 endTime = timeit.default_timer()
